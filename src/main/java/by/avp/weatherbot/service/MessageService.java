@@ -17,6 +17,10 @@ public class MessageService {
                 String answer = message.getText();
                 if (answer.equals("/start")) {
                     return sendMessage.setText("Hello!");
+                } else if (answer.equals("/help")) {
+                    return sendMessage.setText("Здесь будут настройки");
+                } else if (answer.equals("/settings")) {
+                    return sendMessage.setText("Здесь будут настройки");
                 }
             }
         }

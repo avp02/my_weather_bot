@@ -1,5 +1,6 @@
 package by.avp.weatherbot;
 
+import by.avp.weatherbot.button.reply.ReplyButtons;
 import by.avp.weatherbot.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,11 +23,15 @@ public class WeatherBot extends TelegramLongPollingBot {
     @Autowired
     private MessageService messageService;
 
+    @Autowired
+    private ReplyButtons replyButtons;
+
 
     @Override
     public void onUpdateReceived(Update update) {
         SendMessage sendMessage = messageService.getMessage(update);
         try {
+            replyButtons.setButton(sendMessage);
             execute(sendMessage);
         } catch(TelegramApiException e) {
             e.printStackTrace();
